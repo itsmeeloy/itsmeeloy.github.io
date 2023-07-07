@@ -1,11 +1,11 @@
 body{
-    background-color: #15181d;
+    background-color: #000000;
 }
 
 #canvas {
     display: block;
     margin: 50px auto;
-    width: 200px;
+    width: 340px;
 }
 
 .stats{

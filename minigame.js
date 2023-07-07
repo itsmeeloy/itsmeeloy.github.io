@@ -31,15 +31,15 @@ function init(correct) {
     // Background 360 degree arc
     ctx.beginPath();
     ctx.strokeStyle = bgcolor;
-    ctx.lineWidth = 10;
-    ctx.arc(W / 2, H / 2, 100, 0, Math.PI * 2, false);
+    ctx.lineWidth = 50;
+    ctx.arc(W / 2, H / 2, 140, 0, Math.PI * 2, false);
     ctx.stroke();
 
     // Green zone
     ctx.beginPath();
     ctx.strokeStyle = correct === true? bgcolor3 : bgcolor2;
     ctx.lineWidth = 20;
-    ctx.arc(W / 2, H / 2, 100, g_start - 90 * Math.PI / 180, g_end - 90 * Math.PI / 180, false);
+    ctx.arc(W / 2, H / 2, 140, g_start - 90 * Math.PI / 180, g_end - 90 * Math.PI / 180, false);
     ctx.stroke();
 
     // Angle in radians = angle in degrees * PI / 180
@@ -47,7 +47,7 @@ function init(correct) {
     ctx.beginPath();
     ctx.strokeStyle = color;
     ctx.lineWidth = 40;
-    ctx.arc(W / 2, H / 2, 90, radians - 0.1 - 90 * Math.PI / 180, radians - 90 * Math.PI / 180, false);
+    ctx.arc(W / 2, H / 2, 140, radians - 0.1 - 89 * Math.PI / 180, radians - 90 * Math.PI / 180, false);
     ctx.stroke();
 
     // Adding the key_to_press
@@ -65,14 +65,14 @@ function draw() {
     document.querySelector('.stats .streak').innerHTML = streak;
     document.querySelector('.stats .max-streak').innerHTML = max_streak;
 
-    g_start = getRandomInt(20,40) / 15;
-    g_end = getRandomInt(3,5) / 15;
+    g_start = getRandomInt(65, 40) / 15;
+    g_end = getRandomInt(3, 5) / 15;
     g_end = g_start + g_end;
 
-    degrees = 0;
+    degrees = 10;
     new_degrees = 360;
 
-    time = getRandomInt(1, 3) * 8;
+    time = getRandomInt(1, 3) * 6;
 
     animation_loop = setInterval(animate_to, time);
 }
@@ -91,6 +91,8 @@ function animate_to() {
 
 function correct(){
     document.querySelector('.stats').classList.remove('wrong');
+    document.querySelector('.pwede').innerHTML = 'GANYAN DAPAT, GALINGAN MO!';
+
     if(streak > max_streak){
         max_streak = streak;
     }
@@ -98,7 +100,7 @@ function correct(){
     key_to_press--;
 
     if (key_to_press === 0) {
-        document.querySelector('.text.status').innerHTML = 'GALING MO NAMAN!';
+        document.querySelector('.pwede').innerHTML = 'PWEDE KA NA MAG NAKAW PRE!';
         key_to_press = getRandomInt(8, 20);
     }
 
@@ -106,6 +108,7 @@ function correct(){
 
 function wrong(){
     document.querySelector('.stats').classList.add('wrong');
+    document.querySelector('.pwede').innerHTML = 'TANGINA AYOS TAYO PRE!';
     if(streak > max_streak){
         max_streak = streak;
     }
